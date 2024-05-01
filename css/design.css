@@ -1,0 +1,45 @@
+*{
+    box-sizing:border-box;
+}
+.column{
+    float:left;
+}
+.left{
+    width:30%;
+}
+.right{
+    width:70%;
+}
+.row:after{
+    content:"";
+    display:table;
+    clear:both;
+}
+.responsive{
+    max-width:50%;
+    height:auto;
+}
+a:link {
+color: black;
+background-color: transparent;
+text-decoration: underline;
+}
+a:visited {
+color: black;
+background-color: transparent;
+text-decoration: underline;
+}
+a:hover {
+color: gray;
+background-color: transparent;
+text-decoration: none;
+}
+a:active {
+color: black;
+background-color: transparent;
+text-decoration: underline;
+}
+div{
+    width:1000px;
+    margin:auto;
+}
