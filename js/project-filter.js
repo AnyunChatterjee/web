@@ -21,6 +21,15 @@ $(document).ready(function(){
         else if(attr=="now"){
             $("."+attr).show();
         } 
+        else if(attr=="primary"){
+            $("."+attr).show();
+        } 
+        else if(attr=="secondary"){
+            $("."+attr).show();
+        } 
+        else if(attr=="staff"){
+            $("."+attr).show();
+        } 
         else{
             $(".card").show();
         }
