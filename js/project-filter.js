@@ -1,34 +1,28 @@
-filterProjects("all");
+$(document).ready(function(){
+    $(".btn").click(function(){
+        var attr=$(this).attr("data-li");
 
-function filterProjects(c){
-    var x, i;
-    x=document.getElementsByClassName("card");
-    if(c=="all") c="";
-    for (i=0; i<x.length; i++){
-        removeClass(x[i],"show");
-        if(x[i].className.indexOf(c)>-1) addClass(x[i],"show")
-    }
-}
+        $(".btn").removeClass("active");
+        $(this).addClass("active");
 
-function addClass(element,name){
-    var i, arr1, arr2;
-    arr1=element.className.split(" ");
-    arr2=name.split(" ");
-    for (i=0;i<arr2.length;i++){
-        if(arr1.indexOf(arr2[i])==-1){
-            element.className+=" "+arr2[i];
+        $(".card").hide();
+        if(attr=="behavior"){
+            $("."+attr).show();
         }
-    }
-}
-
-function removeClass(element,name){
-    var i, arr1, arr2;
-    arr1=element.className.split(" ");
-    arr2=name.split(" ");
-    for(i=0;i<arr2.length;i++){
-        while (arr1.indexOf(arr2[i])>-1){
-            arr1.splice(arr1.indexOf(arr2[i],1));
+        else if(attr=="media"){
+            $("."+attr).show();
+        } 
+        else if(attr=="pubh"){
+            $("."+attr).show();
+        } 
+        else if(attr=="old"){
+            $("."+attr).show();
+        } 
+        else if(attr=="now"){
+            $("."+attr).show();
+        } 
+        else{
+            $(".card").show();
         }
-    }
-    element.className=arr1.join(" ");
-}
+    })
+});
