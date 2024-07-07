@@ -47,85 +47,49 @@
                 <p>my research spans three domains. this page allows you to filter and view my projects based on what domains they fall in.</p>
                 <div class="col-3 bd-sidebar">
                     <ul class="nav nav-pills flex-column mb-auto">
-                        <li class="nav-item" onclick="filterProjects('all')">
-                            <a href="#" class="btn btn-primary">
-                              <span id="allBtn">show all</span>
-                            </a>
-                        </li>
+                        <li data-li="all" class="btn btn-primary">show all</li>
                         <hr>
-                        <li class="nav-item" onclick="filterProjects('behavior')">
-                        <a href="#" class="btn btn-info">
-                          <span id="behaviorBtn">human behavior</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#" class="btn btn-info">
-                          <span id="mcrBtn">media, culture, rhetoric</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#" class="btn btn-info">
-                          <span id="pubhBtn">public health</span>
-                        </a>
-                      </li>
-                      <hr>
-                      <li>
-                        <a href="#" class="btn btn-secondary">
-                          <span id="currentBtn">currently working on</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#" class="btn btn-secondary">
-                          <span id="oldBtn">previously worked on</span>
-                        </a>
-                      </li>
+                        <li data-li="behavior" class="btn btn-info">human behavior</li>
+                        <li data-li="media" class="btn btn-info">media & rhetoric</li>
+                        <li data-li="pubh" class="btn btn-info">public health</li>
+                        <hr>
+                        <li data-li="now" class="btn btn-secondary">currently working on</li>
+                        <li data-li="old" class="btn btn-secondary">previously worked on</li>
                     </ul>
                 </div>
                 <div class="col">
-                    <div class="row">
-                        <div class="card behavior" style="width: 18rem;">
-                            <div class="card-body">
-                            <h5 class="card-title">algorithmic folk theorization and social media use</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">in data collection and writing phase</h6>
-                            <p class="card-text">how do the ways people conceptualize the role of social media algorithms affect their behavior online? using theories of emerging media and anthropology, this study will deliver a survey and also build on the theory of algorithmic folk theorization.</p>
-                            <a href="#" class="card-link">creative presentation</a>
+                    <div class="row" id="projects">
+                        <div class="card behavior media now" style="width:18rem;">
+                            <h5 class="card-title" id="AlgoFolk" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-AlgoFolk" aria-expanded="false" aria-controls="collapse-AlgoFolk">
+                                algorithmic folk theorization and social media use
+                            </h5>
+                            <div class="collapse" id="collapse-AlgoFolk" data-bs-parent="#projects">
+                                <h6 class="card-subtitle mb-2 text-muted">in data collection and writing phase</h6>
+                                <p class="card-text">how do the ways people conceptualize the role of social media algorithms affect their behavior online? using theories of emerging media and anthropology, this study will deliver a survey and also build on the theory of algorithmic folk theorization.</p>
+                                <a href="#" class="card-link">creative project</a>
                             </div>
                         </div>
-                        <div class="card behavior" style="width: 18rem;">
-                            <div class="card-body">
-                            <h5 class="card-title">media exposure and political participation</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">under review for publication</h6>
-                            <p class="card-text">is there a relationship between people's ideologies, their trust in the media, and their rates of political participation? this analysis of the American National Election Studies dataset will attempt to illuminate this idea.</p>
-                            <a href="#" class="card-link">slide deck</a>
+                        <div class="card behavior media old" style="width:18rem;">
+                            <h5 class="card-title" id="iitp" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-iitp" aria-expanded="false" aria-controls="collapse-iitp">
+                                media exposure and political participation
+                            </h5>
+                            <div class="collapse" id="collapse-iitp" data-bs-parent="#projects">
+                                <h6 class="card-subtitle mb-2 text-muted">under review for publication</h6>
+                                <p class="card-text">is there a relationship between people's ideologies, their trust in the media, and their rates of political participation? this analysis of the American National Election Studies dataset will attempt to illuminate this idea.</p>
+                                <a href="#" class="card-link">slide deck</a>
                             </div>
                         </div>
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                            <h5 class="card-title">"communication for development and social change" in domestic public health</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">in writing phase</h6>
-                            <p class="card-text">this theory paper explore how we should think about health communication intervention efforts, especially when we have a wealth of data showing us that material conditions preclude populations from acting on knowledge, efficacy, and attitudes</p>
-                            <a href="#" class="card-link">slide deck</a>
+                        <div class="card behavior pubh now" style="width:18rem;">
+                            <h5 class="card-title" id="cdsc" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-cdsc" aria-expanded="false" aria-controls="collapse-cdsc">
+                                communication for development and social change in domestic public health
+                            </h5>
+                            <div class="collapse" id="collapse-cdsc" data-bs-parent="#projects">
+                                <h6 class="card-subtitle mb-2 text-muted">in writing phase</h6>
+                                <p class="card-text">this theory paper explore how we should think about health communication intervention efforts, especially when we have a wealth of data showing us that material conditions preclude populations from acting on knowledge, efficacy, and attitudes</p>
+                                <a href="#" class="card-link">slide deck</a>
                             </div>
                         </div>
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-                  </div>
+                    </div>
                 </div>
             </div>
 
@@ -141,76 +105,7 @@
         </div>
 
         <script src="js/jquery-3.7.1.min.js"></script>
-        <script src="js/bootstrap.bundle.min.js"></script>
         <script src="js/project-filter.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
-
-
-<!--            <div class="row">
-
-                <div class="row">
-                    <div class="col" align="center">
-                        <div class="affix">
-                            <button type="button" class="btn btn-primary">human behavior</button>
-                            <button type="button" class="btn btn-success">media/culture/rhetoric</button>
-                            <button type="button" class="btn btn-danger">public health</button>
-                        </div>
-                        <div class="affix">
-                            <button type="button" class="btn btn-outline-info">working on now</button>
-                            <button type="button" class="btn btn-outline-warning">on hiatus</button>
-                            <button type="button" class="btn btn-outline-secondary">worked on previously</button>
-                        </div>
-                    </div>
-                    <div class="col-8">
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <p></p>
-                <hr>
-            </div>
-        -->
