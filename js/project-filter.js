@@ -5,7 +5,7 @@ $(document).ready(function(){
         $(".btn").removeClass("active");
         $(this).addClass("active");
 
-        $(".card").hide();
+        $(".accordion-item").hide();
         if(attr=="behavior"){
             $("."+attr).show();
         }
@@ -15,23 +15,8 @@ $(document).ready(function(){
         else if(attr=="pubh"){
             $("."+attr).show();
         } 
-        else if(attr=="old"){
-            $("."+attr).show();
-        } 
-        else if(attr=="now"){
-            $("."+attr).show();
-        } 
-        else if(attr=="primary"){
-            $("."+attr).show();
-        } 
-        else if(attr=="secondary"){
-            $("."+attr).show();
-        } 
-        else if(attr=="staff"){
-            $("."+attr).show();
-        } 
         else{
-            $(".card").show();
+            $(".accordion-item").show();
         }
     })
 });
