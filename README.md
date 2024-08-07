@@ -12,7 +12,7 @@ codebase weight as of 8/7/24:
 
 one 78 kilobyte jpg file
 
-17 megabytes of statically linked pdfs
+17 megabytes of statically linked pdfs (my cv, teaching statement, collateral from research projects, and syllabi for courses i've taught)
 
 
 
