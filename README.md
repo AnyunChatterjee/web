@@ -4,13 +4,13 @@ i use this website to test out basic principles of ux design as well, since i wa
 
 codebase weight as of 8/7/24: 
 
-39 kilobytes of html
+39 kilobytes of html 
 
-6 kilobytes of css
+6 kilobytes of css (basically just the bootstrap library)
 
-2.5 megabytes of javascript
+2.5 megabytes of javascript (literally just using js for button logic and animating accordions. so it might not be worth)
 
-one 78 kilobyte jpg file
+one 78 kilobyte jpg file (i know it should be webp, i'll make that update at some point)
 
 17 megabytes of statically linked pdfs (my cv, teaching statement, collateral from research projects, and syllabi for courses i've taught)
 
