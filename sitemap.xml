@@ -1,80 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 
 <url>
+  <loc>https://www.anyunchatterjee.com/</loc>
+  <lastmod>2025-06-20T04:34:45+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://www.anyunchatterjee.com/index.html</loc>
+  <lastmod>2025-06-20T04:34:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>https://www.anyunchatterjee.com/teaching.html</loc>
-  <lastmod>2025-04-27</lastmod>
+  <lastmod>2025-06-20T04:34:45+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.anyunchatterjee.com/blog.html</loc>
-  <lastmod>2025-04-28</lastmod>
+  <lastmod>2025-06-20T04:34:45+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.anyunchatterjee.com/docs/anyun-chatterjee_CV.pdf</loc>
-  <lastmod>2025-04-27</lastmod>
+  <lastmod>2025-06-20T04:34:45+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.anyunchatterjee.com/docs/teaching-philosophy_AC.pdf</loc>
-  <lastmod>2025-04-27</lastmod>
+  <lastmod>2025-06-20T04:34:45+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.anyunchatterjee.com/docs/syllabi/ADV1196_S25.pdf</loc>
-  <lastmod>2025-04-27</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.anyunchatterjee.com/docs/syllabi/CSI3601_F24_v4.pdf</loc>
-  <lastmod>2025-04-27</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.anyunchatterjee.com/docs/syllabi/MSP1655_S25.pdf</loc>
-  <lastmod>2025-04-27</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.anyunchatterjee.com/docs/syllabi/MSP0821_F23_v1.pdf</loc>
-  <lastmod>2025-04-27</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.anyunchatterjee.com/docs/syllabi/ADV%201101-012_Syllabus_Fall%202023.pdf</loc>
-  <lastmod>2025-04-27</lastmod>
+  <loc>https://www.anyunchatterjee.com/docs/syllabi/COM150_Su25.pdf</loc>
+  <lastmod>2025-06-20T04:34:45+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.anyunchatterjee.com/docs/syllabi/HNRS201_F24_v3.pdf</loc>
-  <lastmod>2025-04-27</lastmod>
+  <lastmod>2025-06-20T04:34:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.anyunchatterjee.com/docs/syllabi/ADV1196_S25.pdf</loc>
+  <lastmod>2025-06-20T04:34:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.anyunchatterjee.com/docs/syllabi/CSI3601_F24_v4.pdf</loc>
+  <lastmod>2025-06-20T04:34:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.anyunchatterjee.com/docs/syllabi/MSP1655_S25.pdf</loc>
+  <lastmod>2025-06-20T04:34:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.anyunchatterjee.com/docs/syllabi/MSP0821_F23_v1.pdf</loc>
+  <lastmod>2025-06-20T04:34:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.anyunchatterjee.com/docs/syllabi/ADV%201101-012_Syllabus_Fall%202023.pdf</loc>
+  <lastmod>2025-06-20T04:34:45+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.anyunchatterjee.com/docs/syllabi/ART98_S16.pdf</loc>
-  <lastmod>2025-04-27</lastmod>
+  <lastmod>2025-06-20T04:34:45+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.anyunchatterjee.com/docs/syllabi/S17SatherHealthSyllabus.pdf</loc>
-  <lastmod>2025-04-27</lastmod>
+  <lastmod>2025-06-20T04:34:45+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.anyunchatterjee.com/blogs/zero-testing-pedagogy.html</loc>
-  <lastmod>2025-04-28</lastmod>
+  <lastmod>2025-06-20T04:34:45+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.anyunchatterjee.com/blogs/reclaiming-digital-autonomy.html</loc>
-  <lastmod>2025-04-28</lastmod>
+  <lastmod>2025-06-20T04:34:45+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.anyunchatterjee.com/blogs/the-ai-problem.html</loc>
-  <lastmod>2025-04-27</lastmod>
+  <lastmod>2025-06-20T04:34:45+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 
