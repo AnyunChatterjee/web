@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="A searchable archive of public health cannabis PSAs.">
+  <meta name="keywords" content="cannabis, PSA, public health, media archive, anyun chatterjee">
+  <meta name="author" content="anyun chatterjee">
+  <meta property="og:title" content="Cannabis PSA Archive">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="canonical" href="https://anyunchatterjee.com/cannabis-psa-archive/index.html" />
+  <title>cannabis psa archive</title>
+</head>
+
+<body>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand"><h1>anyun chatterjee</h1></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="/index.html">home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/teaching.html">teaching</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="/cannabis-psa-archive/index.html">cannabis psas</a></li>
+          <li class="nav-item"><a class="nav-link" href="/blog.html">blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="/docs/anyun-chatterjee_CV.pdf" target="_blank">cv</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container mt-4">
+    <h2>cannabis psa archive</h2>
+    <p class="text-muted">a searchable collection of educational videos about cannabis made by american public health departments.</p>
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="mb-3">
+  <label for="state-filter" class="form-label">State</label>
+  <select id="state-filter" class="form-select">
+    <option value="">All</option>
+  </select>
+</div>
+
+<div class="mb-3">
+  <label for="year-filter" class="form-label">Year</label>
+  <select id="year-filter" class="form-select">
+    <option value="">All</option>
+  </select>
+</div>
+
+<div class="mb-3">
+  <label for="length-filter" class="form-label">Length</label>
+  <select id="length-filter" class="form-select">
+    <option value="">All</option>
+    <option value="short">Short (&lt;30s)</option>
+    <option value="medium">Medium (30–90s)</option>
+    <option value="long">Long (&gt;90s)</option>
+  </select>
+</div>
+
+<div class="mb-3">
+  <label for="views-filter" class="form-label">Views</label>
+  <select id="views-filter" class="form-select">
+    <option value="">All</option>
+    <option value="low">Low (&lt;500)</option>
+    <option value="med">Medium (500–5000)</option>
+    <option value="high">High (&gt;5000)</option>
+  </select>
+</div>
+
+<div class="mb-3">
+  <label for="dept-filter" class="form-label">Department</label>
+  <select id="dept-filter" class="form-select">
+    <option value="">All</option>
+  </select>
+</div>
+        <small class="text-muted">
+            <b>current number of items in this database: 142</b>
+            <p>these videos were archived on june 2, 2025. please reach out if you have a video which should be included!</p>
+            <p>the creation of this database was funded in part by a summer research grant from temple university as part of a broader research project studying the rhetoric of public health institutions.</p>
+            <p>my email address is [anyunchatterjee] [at] [gmail] [dot] [com].</p>
+            <i>last updated 8/3/25</i>
+        </small>
+      </div>
+      <div class="col-md-9">
+        <div id="video-list" class="mt-2"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="archive.js"></script>
+</body>
+</html>
