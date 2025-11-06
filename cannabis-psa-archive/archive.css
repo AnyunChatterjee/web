@@ -11,6 +11,57 @@ body {
   margin-bottom: 20px;
 }
 
+.filters-and-videos {
+  position: relative;
+  min-height: 600px;
+}
+
+.filters-section {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.video-container {
+  height: calc(100vh - 300px);
+  min-height: 400px;
+  overflow-y: auto;
+  margin: -5px;
+  padding: 5px;
+}
+
+.video-container > div {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: background-color 0.2s;
+}
+
+.video-container > div:hover {
+  background-color: rgba(255,255,255,0.03);
+}
+
+.video-container > div:last-child {
+  border-bottom: none;
+}
+
+.video-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.video-container::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+}
+
+.video-container::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 4px;
+}
+
+.video-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.3);
+}
+
 #video-grid {
   display: flex;
   flex-wrap: wrap;

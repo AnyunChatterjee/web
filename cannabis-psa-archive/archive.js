@@ -1,3 +1,38 @@
+function sortVideos(data, sortBy) {
+  return [...data].sort((a, b) => {
+    switch (sortBy) {
+      case 'title':
+        return (a["Video Title"] || '').localeCompare(b["Video Title"] || '');
+      case 'title-desc':
+        return (b["Video Title"] || '').localeCompare(a["Video Title"] || '');
+      case 'year':
+        return (parseInt(a["Year"]) || 0) - (parseInt(b["Year"]) || 0);
+      case 'year-desc':
+        return (parseInt(b["Year"]) || 0) - (parseInt(a["Year"]) || 0);
+      case 'duration':
+        return (parseFloat(a["Seconds"]) || 0) - (parseFloat(b["Seconds"]) || 0);
+      case 'duration-desc':
+        return (parseFloat(b["Seconds"]) || 0) - (parseFloat(a["Seconds"]) || 0);
+      case 'views':
+        return (parseFloat(a["Views"]) || 0) - (parseFloat(b["Views"]) || 0);
+      case 'views-desc':
+        return (parseFloat(b["Views"]) || 0) - (parseFloat(a["Views"]) || 0);
+      default:
+        return 0;
+    }
+  });
+}
+
+function setupSorting() {
+  const sortSelect = document.getElementById('sort-select');
+  if (!sortSelect) return;
+  
+  sortSelect.addEventListener('change', () => {
+    const filtered = applyFilters(window.videoData);
+    renderVideos(filtered);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   fetch("index.json")
     .then((res) => res.json())
@@ -5,9 +40,23 @@ document.addEventListener("DOMContentLoaded", () => {
       window.videoData = data; // Store globally for filtering
       renderVideos(data);
       setupFilters(data);
+      setupSorting();
     })
     .catch((err) => console.error("Failed to load index.json", err));
 });
+
+
+
+function updateVideoCount(count, total) {
+  const countElement = document.getElementById("video-count");
+  if (countElement) {
+    if (count === total) {
+      countElement.textContent = `${count} videos`;
+    } else {
+      countElement.textContent = `${count} of ${total} videos`;
+    }
+  }
+}
 
 function renderVideos(data) {
   const container = document.getElementById("video-list");
@@ -15,16 +64,20 @@ function renderVideos(data) {
 
   if (!data.length) {
     container.innerHTML = "<p class='text-muted'>No results found.</p>";
+    updateVideoCount(0, window.videoData.length);
     return;
   }
+
+  updateVideoCount(data.length, window.videoData.length);
 
   data.forEach((entry) => {
     const title = entry["Video Title"] || entry.filename || "Untitled";
     const state = entry["State"] || "Unknown state";
     const year = entry["Year"] || "Unknown year";
     const department = entry["Department"] || "Unknown department";
-    const length = entry["Seconds"] ? `${entry["Seconds"]}s` : "?";
-    const views = entry["Views"] || "?";
+    const seconds = entry["Seconds"] ? Math.round(parseFloat(entry["Seconds"])) : null;
+    const length = seconds ? `${seconds}s` : "?";
+    const views = entry["Views"] ? Math.round(parseFloat(entry["Views"])).toLocaleString() : "?";
     const filename = entry["filename"] || "";
 
     const card = document.createElement("div");
@@ -58,6 +111,21 @@ function setupFilters(data) {
     "views-filter",
     "dept-filter"
   ];
+  
+  // Setup reset filters button
+  const resetButton = document.getElementById("reset-filters");
+  if (resetButton) {
+    resetButton.addEventListener("click", () => {
+      filterIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = "";
+      });
+      const sortSelect = document.getElementById("sort-select");
+      if (sortSelect) sortSelect.value = "title";
+      renderVideos(sortVideos(window.videoData, "title"));
+      updateVideoCount(window.videoData.length, window.videoData.length);
+    });
+  }
 
   filterIds.forEach((id) => {
     const el = document.getElementById(id);
@@ -91,8 +159,9 @@ function applyFilters(data) {
   const length = document.getElementById("length-filter").value;
   const views = document.getElementById("views-filter").value;
   const dept = document.getElementById("dept-filter").value;
+  const sortBy = document.getElementById("sort-select").value;
 
-  return data.filter((entry) => {
+  let filtered = data.filter((entry) => {
     if (state && entry["State"] !== state) return false;
     if (year && entry["Year"] !== year) return false;
     if (dept && entry["Department"] !== dept) return false;
@@ -109,4 +178,6 @@ function applyFilters(data) {
 
     return true;
   });
+
+  return sortVideos(filtered, sortBy);
 }

@@ -8,6 +8,7 @@
   <meta property="og:title" content="Cannabis PSA Archive">
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link href="/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link rel="canonical" href="https://anyunchatterjee.com/cannabis-psa-archive/index.html" />
   <title>cannabis psa archive</title>
 </head>
@@ -15,76 +16,147 @@
 <body>
   <div class="container">
     <nav class="navbar navbar-expand-lg">
-      <a class="navbar-brand"><h1>anyun chatterjee</h1></a>
+      <a class="navbar-brand" href="index.html"><h1>Cannabis PSA Archive</h1></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="/index.html">home</a></li>
-          <li class="nav-item"><a class="nav-link" href="/teaching.html">teaching</a></li>
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="/cannabis-psa-archive/index.html">cannabis psas</a></li>
-          <li class="nav-item"><a class="nav-link" href="/blog.html">blog</a></li>
-          <li class="nav-item"><a class="nav-link" href="/docs/anyun-chatterjee_CV.pdf" target="_blank">cv</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="/index.html">
+              <i class="bi bi-arrow-left"></i> Return to anyunchatterjee.com
+            </a>
+          </li>
         </ul>
       </div>
     </nav>
   </div>
 
   <div class="container mt-4">
-    <h5>this page is a searchable collection of <b>142</b> educational videos about cannabis made by american public health departments.</h5>
-    <p class="text-muted">the creation of this archive was supported in part by a summer research grant from temple university to study the rhetoric of public health institutions.</p>
-    <div class="row">
-      <div class="col-md-3">
-        <div class="mb-3">
-  <label for="state-filter" class="form-label">State</label>
-  <select id="state-filter" class="form-select">
-    <option value="">All</option>
-  </select>
-</div>
+    <div class="row mb-4">
+      <div class="col-12">
+        <h4 class="mb-2">Welcome to the Cannabis PSA Archive</h4>
+        <p class="text-muted">This archive of videos made by American public health videos is shared in this public, sortable, and downloadable form in hopes that other researchers will find value in this collection.</p>
+      </div>
+    </div>
 
-<div class="mb-3">
-  <label for="year-filter" class="form-label">Year</label>
-  <select id="year-filter" class="form-select">
-    <option value="">All</option>
-  </select>
-</div>
+    <div class="row filters-and-videos">
+      <div class="col-md-3 filters-section">
+        <!-- Dataset Download and Citation Card -->
+        <div class="card bg-dark mb-4">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div>
+                <h6 class="card-title mb-0">Dataset</h6>
+                <small class="text-muted">Download the complete archive data in JSON format</small>
+              </div>
+              <a href="index.json" download class="btn btn-sm btn-outline-primary">
+                Download JSON
+              </a>
+            </div>
+            <hr class="opacity-25">
+            <div class="mt-3">
+              <h6 class="card-subtitle mb-2">How to Cite (APA)</h6>
+              <div class="citation-formats">
+                <div class="mb-2">
+                  <p class="text-muted small mb-2">
+                    Chatterjee, A. (2025). Cannabis PSA Archive [Data set]. https://anyunchatterjee.com/cannabis-psa-archive/
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<div class="mb-3">
-  <label for="length-filter" class="form-label">Length</label>
-  <select id="length-filter" class="form-select">
-    <option value="">All</option>
-    <option value="short">Short (&lt;30s)</option>
-    <option value="medium">Medium (30–90s)</option>
-    <option value="long">Long (&gt;90s)</option>
-  </select>
-</div>
+        <!-- Filters Card -->
+        <div class="card bg-dark">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h6 class="card-title mb-0">Filter Videos</h6>
+              <span class="text-muted small" id="video-count">142 videos</span>
+            </div>
+            
+            <div class="mb-2">
+              <label for="state-filter" class="form-label small">State</label>
+              <select id="state-filter" class="form-select form-select-sm">
+                <option value="">All</option>
+              </select>
+            </div>
 
-<div class="mb-3">
-  <label for="views-filter" class="form-label">Views</label>
-  <select id="views-filter" class="form-select">
-    <option value="">All</option>
-    <option value="low">Low (&lt;500)</option>
-    <option value="med">Medium (500–5000)</option>
-    <option value="high">High (&gt;5000)</option>
-  </select>
-</div>
+            <div class="mb-2">
+              <label for="year-filter" class="form-label small">Year</label>
+              <select id="year-filter" class="form-select form-select-sm">
+                <option value="">All</option>
+              </select>
+            </div>
 
-<div class="mb-3">
-  <label for="dept-filter" class="form-label">Department</label>
-  <select id="dept-filter" class="form-select">
-    <option value="">All</option>
-  </select>
-</div>
-        <small class="text-muted">
-            <p>these videos were archived on june 2, 2025. please reach out if you have a video which should be included!</p>
-            <p>my email address is [anyunchatterjee] [at] [gmail] [dot] [com].</p>
-            <i>last updated 8/3/25</i>
-        </small>
+            <div class="mb-2">
+              <label for="length-filter" class="form-label small">Length</label>
+              <select id="length-filter" class="form-select form-select-sm">
+                <option value="">All</option>
+                <option value="short">Short (&lt;30s)</option>
+                <option value="medium">Medium (30–90s)</option>
+                <option value="long">Long (&gt;90s)</option>
+              </select>
+            </div>
+
+            <div class="mb-2">
+              <label for="views-filter" class="form-label small">Views</label>
+              <select id="views-filter" class="form-select form-select-sm">
+                <option value="">All</option>
+                <option value="low">Low (&lt;500)</option>
+                <option value="med">Medium (500–5000)</option>
+                <option value="high">High (&gt;5000)</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="dept-filter" class="form-label small">Department</label>
+              <select id="dept-filter" class="form-select form-select-sm">
+                <option value="">All</option>
+              </select>
+            </div>
+
+            <button id="reset-filters" class="btn btn-secondary btn-sm w-100">Reset All Filters</button>
+          </div>
+        </div>
+
+        <!-- About Card -->
+        <div class="card bg-dark mt-4">
+          <div class="card-body">
+            <p class="mb-3">This archive was created by Anyun Chatterjee on June 2, 2025, with grant support from Temple University.
+            <hr class="opacity-25">
+            <div class="mt-3">
+              <p class="text-muted small mb-2">Please reach out if you have a video which should be included!</p>
+              <p class="text-muted small mb-2">My email address is [anyunchatterjee] [at] [gmail] [dot] [com].</p>
+              <p class="text-muted small mb-0"><i>Last updated 11/6/25</i></p>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="col-md-9">
-        <div id="video-list" class="mt-2"></div>
+        <div class="card bg-dark h-100">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h6 class="card-title mb-0">Videos</h6>
+              <div class="d-flex align-items-center">
+                <label for="sort-select" class="text-muted small me-2">Sort by:</label>
+                <select id="sort-select" class="form-select form-select-sm" style="width: auto;">
+                  <option value="title">Title (A-Z)</option>
+                  <option value="title-desc">Title (Z-A)</option>
+                  <option value="year">Year (Oldest)</option>
+                  <option value="year-desc">Year (Newest)</option>
+                  <option value="duration">Duration (Shortest)</option>
+                  <option value="duration-desc">Duration (Longest)</option>
+                  <option value="views">Views (Lowest)</option>
+                  <option value="views-desc">Views (Highest)</option>
+                </select>
+              </div>
+            </div>
+            <div id="video-list" class="video-container"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
