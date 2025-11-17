@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <title>Loading…</title>
+  <style>
+    .markdown-body { padding: 24px; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <nav class="navbar navbar-expand-lg">
+      <a href="/index.html" class="navbar-brand">
+        <h1>anyun chatterjee</h1>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/index.html">home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/teaching.html">teaching</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/cannabis-psa-archive/index.html">cannabis psas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/blog.html">blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/docs/anyun-chatterjee_CV.pdf" target="_blank">cv</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container markdown-body" id="post-root">
+    <p class="text-muted">Loading post…</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    // Simple frontmatter parser (YAML-ish)
+    function parseFrontmatter(text) {
+      const fm = {data: {}, content: text};
+      if (text.startsWith('---')) {
+        const end = text.indexOf('\n---', 3);
+        if (end !== -1) {
+          const raw = text.substring(3, end + 0).trim();
+          fm.content = text.substring(end + 4).trim();
+          raw.split(/\n+/).forEach(line => {
+            const [k, ...rest] = line.split(':');
+            if (!k) return;
+            fm.data[k.trim()] = rest.join(':').trim();
+          });
+        }
+      }
+      return fm;
+    }
+
+    function getPostSlug() {
+      // Support /post.html?post=slug or /post/slug (not used here)
+      const params = new URLSearchParams(window.location.search);
+      return params.get('post');
+    }
+
+    async function loadPost() {
+      const slug = getPostSlug();
+      if (!slug) {
+        document.getElementById('post-root').innerHTML = '<p class="text-danger">No post specified. Use ?post=slug</p>';
+        return;
+      }
+      const mdPath = `/blogs/${slug}.md`;
+      let index = [];
+      try {
+        // Try to fetch index.json for navigation
+        try {
+          const idxRes = await fetch('/blogs/index.json');
+          if (idxRes.ok) {
+            index = await idxRes.json();
+          }
+        } catch (e) {}
+
+        const res = await fetch(mdPath);
+        if (!res.ok) throw new Error('Not found');
+        const raw = await res.text();
+        const parsed = parseFrontmatter(raw);
+        const html = marked.parse(parsed.content);
+        // Prefer title from index.json, fallback to frontmatter
+        let title = '';
+        if (index.length) {
+          const idxObj = index.find(it => it.slug === slug);
+          if (idxObj && idxObj.title) title = idxObj.title;
+        }
+        if (!title && parsed.data.title) title = parsed.data.title;
+        if (title) {
+          document.title = title + ' — anyun chatterjee';
+        } else {
+          document.title = 'Blog Post — anyun chatterjee';
+        }
+        const header = title ? `<h2>${title}</h2>` : '';
+        // Prefer date from index.json, fallback to frontmatter
+        let date = '';
+        if (index.length) {
+          const idxObj = index.find(it => it.slug === slug);
+          if (idxObj && idxObj.date) date = idxObj.date;
+        }
+        if (!date && parsed.data.date) date = parsed.data.date;
+
+        // Navigation logic (now appears under the title and at the bottom)
+        function navRow(prev, next) {
+          return `
+            <div class="d-flex justify-content-between mb-3">
+              <div>
+                ${prev ? `<a class="btn btn-outline-secondary" href="/post.html?post=${encodeURIComponent(prev.slug)}">&larr; Previous blog</a>` : ''}
+              </div>
+              <div>
+                <a class="btn btn-outline-secondary" href="/blog.html">Return to list of blogs</a>
+              </div>
+              <div>
+                ${next ? `<a class="btn btn-outline-secondary" href="/post.html?post=${encodeURIComponent(next.slug)}">Next blog &rarr;</a>` : ''}
+              </div>
+            </div>
+          `;
+        }
+
+        let nav = '';
+        let prev = null, next = null;
+        if (index.length) {
+          const idx = index.findIndex(it => it.slug === slug);
+          if (idx !== -1) {
+            prev = index[idx + 1];
+            next = index[idx - 1];
+            nav = navRow(prev, next);
+          }
+        }
+
+        document.getElementById('post-root').innerHTML = header + html + nav + `
+          <footer class="bottom mt-4">
+            <hr>
+            <p>my email address is [anyunchatterjee] [at] [gmail] [dot] [com].</p>
+            <small><i>${date ? `this blog was published on ${date}` : ''}</i></small>
+          </footer>
+        `;
+      } catch (err) {
+        document.getElementById('post-root').innerHTML = `<p class=\"text-danger\">Failed to load post: ${err.message}</p>`;
+      }
+    }
+
+    loadPost();
+  </script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
