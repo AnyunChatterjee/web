@@ -47,114 +47,47 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
-    // Simple frontmatter parser (YAML-ish)
     function parseFrontmatter(text) {
-      const fm = {data: {}, content: text};
-      if (text.startsWith('---')) {
-        const end = text.indexOf('\n---', 3);
-        if (end !== -1) {
-          const raw = text.substring(3, end + 0).trim();
-          fm.content = text.substring(end + 4).trim();
-          raw.split(/\n+/).forEach(line => {
-            const [k, ...rest] = line.split(':');
-            if (!k) return;
-            fm.data[k.trim()] = rest.join(':').trim();
-          });
-        }
-      }
-      return fm;
+      const end = text.startsWith('---') ? text.indexOf('\n---', 3) : -1;
+      if (end === -1) return {data: {}, content: text};
+      const data = Object.fromEntries(
+        text.substring(3, end).trim().split(/\n+/)
+          .map(line => line.split(':'))
+          .filter(([k]) => k)
+          .map(([k, ...v]) => [k.trim(), v.join(':').trim()])
+      );
+      return {data, content: text.substring(end + 4).trim()};
     }
 
-    function getPostSlug() {
-      // Support /post.html?post=slug or /post/slug (not used here)
-      const params = new URLSearchParams(window.location.search);
-      return params.get('post');
-    }
+    (async function() {
+      const slug = new URLSearchParams(location.search).get('post');
+      const root = document.getElementById('post-root');
+      if (!slug) return root.innerHTML = '<p class="text-danger">No post specified. Use ?post=slug</p>';
 
-    async function loadPost() {
-      const slug = getPostSlug();
-      if (!slug) {
-        document.getElementById('post-root').innerHTML = '<p class="text-danger">No post specified. Use ?post=slug</p>';
-        return;
-      }
-      const mdPath = `/blogs/${slug}.md`;
-      let index = [];
       try {
-        // Try to fetch index.json for navigation
-        try {
-          const idxRes = await fetch('/blogs/index.json');
-          if (idxRes.ok) {
-            index = await idxRes.json();
-          }
-        } catch (e) {}
+        const [idxRes, mdRes] = await Promise.all([
+          fetch('/blogs/index.json').catch(() => null),
+          fetch(`/blogs/${slug}.md`)
+        ]);
+        if (!mdRes.ok) throw new Error('Not found');
 
-        const res = await fetch(mdPath);
-        if (!res.ok) throw new Error('Not found');
-        const raw = await res.text();
-        const parsed = parseFrontmatter(raw);
-        const html = marked.parse(parsed.content);
-        // Prefer title from index.json, fallback to frontmatter
-        let title = '';
-        if (index.length) {
-          const idxObj = index.find(it => it.slug === slug);
-          if (idxObj && idxObj.title) title = idxObj.title;
-        }
-        if (!title && parsed.data.title) title = parsed.data.title;
-        if (title) {
-          document.title = title + ' — anyun chatterjee';
-        } else {
-          document.title = 'Blog Post — anyun chatterjee';
-        }
-        const header = title ? `<h2>${title}</h2>` : '';
-        // Prefer date from index.json, fallback to frontmatter
-        let date = '';
-        if (index.length) {
-          const idxObj = index.find(it => it.slug === slug);
-          if (idxObj && idxObj.date) date = idxObj.date;
-        }
-        if (!date && parsed.data.date) date = parsed.data.date;
+        const index = idxRes?.ok ? await idxRes.json() : [];
+        const {data, content} = parseFrontmatter(await mdRes.text());
+        const indexPost = index.find(it => it.slug === slug);
+        const title = indexPost?.title || data.title || '';
+        const date = indexPost?.date || data.date || '';
 
-        // Navigation logic (now appears under the title and at the bottom)
-        function navRow(prev, next) {
-          return `
-            <div class="d-flex justify-content-between mb-3">
-              <div>
-                ${prev ? `<a class="btn btn-outline-secondary" href="/post.html?post=${encodeURIComponent(prev.slug)}">&larr; Previous blog</a>` : ''}
-              </div>
-              <div>
-                <a class="btn btn-outline-secondary" href="/blog.html">Return to list of blogs</a>
-              </div>
-              <div>
-                ${next ? `<a class="btn btn-outline-secondary" href="/post.html?post=${encodeURIComponent(next.slug)}">Next blog &rarr;</a>` : ''}
-              </div>
-            </div>
-          `;
-        }
+        document.title = title ? `${title} — anyun chatterjee` : 'Blog Post — anyun chatterjee';
 
-        let nav = '';
-        let prev = null, next = null;
-        if (index.length) {
-          const idx = index.findIndex(it => it.slug === slug);
-          if (idx !== -1) {
-            prev = index[idx + 1];
-            next = index[idx - 1];
-            nav = navRow(prev, next);
-          }
-        }
+        const idx = indexPost ? index.indexOf(indexPost) : -1;
+        const [prev, next] = idx !== -1 ? [index[idx + 1], index[idx - 1]] : [];
+        const nav = idx !== -1 ? `<div class="d-flex justify-content-between mb-3"><div>${prev ? `<a class="btn btn-outline-secondary" href="/post.html?post=${encodeURIComponent(prev.slug)}">&larr; Previous blog</a>` : ''}</div><div><a class="btn btn-outline-secondary" href="/blog.html">Return to list of blogs</a></div><div>${next ? `<a class="btn btn-outline-secondary" href="/post.html?post=${encodeURIComponent(next.slug)}">Next blog &rarr;</a>` : ''}</div></div>` : '';
 
-        document.getElementById('post-root').innerHTML = header + html + nav + `
-          <footer class="bottom mt-4">
-            <hr>
-            <p>my email address is [anyunchatterjee] [at] [gmail] [dot] [com].</p>
-            <small><i>${date ? `this blog was published on ${date}` : ''}</i></small>
-          </footer>
-        `;
+        root.innerHTML = `${title ? `<h2>${title}</h2>` : ''}${marked.parse(content)}${nav}<footer class="bottom mt-4"><hr><p>my email address is [anyunchatterjee] [at] [gmail] [dot] [com].</p><small><i>${date ? `this blog was published on ${date}` : ''}</i></small></footer>`;
       } catch (err) {
-        document.getElementById('post-root').innerHTML = `<p class=\"text-danger\">Failed to load post: ${err.message}</p>`;
+        root.innerHTML = `<p class="text-danger">Failed to load post: ${err.message}</p>`;
       }
-    }
-
-    loadPost();
+    })();
   </script>
   <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
